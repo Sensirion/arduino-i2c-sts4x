@@ -80,6 +80,19 @@ SensirionI2CSts4x::measureHighPrecisionTicks(uint16_t& temperatureTicks) {
     return error;
 }
 
+uint16_t SensirionI2CSts4x::measureHighPrecision(float& temperature) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+
+    error = measureHighPrecisionTicks(temperatureTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    return NoError;
+}
+
 uint16_t
 SensirionI2CSts4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks) {
     uint16_t error;
@@ -110,6 +123,19 @@ SensirionI2CSts4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks) {
     return error;
 }
 
+uint16_t SensirionI2CSts4x::measureMediumPrecision(float& temperature) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+
+    error = measureMediumPrecisionTicks(temperatureTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    return NoError;
+}
+
 uint16_t
 SensirionI2CSts4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks) {
     uint16_t error;
@@ -138,6 +164,19 @@ SensirionI2CSts4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks) {
 
     error |= rxFrame.getUInt16(temperatureTicks);
     return error;
+}
+
+uint16_t SensirionI2CSts4x::measureLowestPrecision(float& temperature) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+
+    error = measureLowestPrecisionTicks(temperatureTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    return NoError;
 }
 
 uint16_t SensirionI2CSts4x::serialNumber(uint32_t& serialNumber) {
@@ -183,4 +222,8 @@ uint16_t SensirionI2CSts4x::softReset() {
                                                  *_i2cBus);
     delay(10);
     return error;
+}
+
+float SensirionI2CSts4x::_convertTicksToCelsius(uint16_t ticks) {
+    return static_cast<float>(ticks * 175.0 / 65535.0 - 45.0);
 }

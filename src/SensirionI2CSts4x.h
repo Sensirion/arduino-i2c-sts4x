@@ -67,6 +67,16 @@ class SensirionI2CSts4x {
     uint16_t measureHighPrecisionTicks(uint16_t& temperatureTicks);
 
     /**
+     * measureHighPrecision() - SHT4x command for a single shot
+     * measurement with high repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureHighPrecision(float& temperature);
+
+    /**
      * measureMediumPrecisionTicks() - SHT4x command for a single shot
      * measurement with medium repeatability.
      *
@@ -78,6 +88,16 @@ class SensirionI2CSts4x {
     uint16_t measureMediumPrecisionTicks(uint16_t& temperatureTicks);
 
     /**
+     * measureMediumPrecision() - SHT4x command for a single shot
+     * measurement with medium repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureMediumPrecision(float& temperature);
+
+    /**
      * measureLowestPrecisionTicks() - SHT4x command for a single shot
      * measurement with lowest repeatability.
      *
@@ -87,6 +107,16 @@ class SensirionI2CSts4x {
      * @return 0 on success, an error code otherwise
      */
     uint16_t measureLowestPrecisionTicks(uint16_t& temperatureTicks);
+
+    /**
+     * measureLowestPrecision() - SHT4x command for a single shot
+     * measurement with lowest repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureLowestPrecision(float& temperature);
 
     /**
      * serialNumber() - Read out the serial number
@@ -116,6 +146,7 @@ class SensirionI2CSts4x {
 
   private:
     TwoWire* _i2cBus = nullptr;
+    float _convertTicksToCelsius(uint16_t ticks);
 };
 
 #endif /* SENSIRIONI2CSTS4X_H */
