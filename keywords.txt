@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SensirionI2CSts4x	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+measureHighPrecisionTicks	KEYWORD2
+measureMediumPrecisionTicks	KEYWORD2
+measureLowestPrecisionTicks	KEYWORD2
+serialNumber	KEYWORD2
+softReset	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+sts4x	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
