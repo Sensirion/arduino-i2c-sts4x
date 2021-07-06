@@ -1,9 +1,4 @@
 /*
- * I2C-Generator: 0.2.0
- * Yaml Version: 0.1.0
- * Template Version: 0.7.0-12-g6411a7e
- */
-/*
  * Copyright (c) 2021, Sensirion AG
  * All rights reserved.
  *
@@ -40,8 +35,6 @@
 
 SensirionI2CSts4x sts4x;
 
-// TODO: DRIVER_GENERATOR Add missing commands and make printout more pretty
-
 void setup() {
 
     Serial.begin(115200);
@@ -56,15 +49,32 @@ void setup() {
 
     sts4x.begin(Wire);
 
-    // Start Measurement
+    uint32_t serialNumber;
+    error = sts4x.serialNumber(serialNumber);
+    if (error) {
+        Serial.print("Error trying to execute serialNumber(): ");
+        errorToString(error, errorMessage, 256);
+        Serial.println(errorMessage);
+    } else {
+        Serial.print("Serial Number: ");
+        Serial.println(serialNumber);
+    }
 }
 
 void loop() {
     uint16_t error;
     char errorMessage[256];
 
-    // TODO: DRIVER_GENERATOR Adjust measurement delay
     delay(1000);
-    // TODO: DRIVER_GENERATOR Add scale and offset to printed measurement values
-    // Read Measurement
+
+    float temperature;
+    error = sts4x.measureHighPrecision(temperature);
+    if (error) {
+        Serial.print("Error trying to execute measureHighPrecision(): ");
+        errorToString(error, errorMessage, 256);
+        Serial.println(errorMessage);
+    } else {
+        Serial.print("Temperature:");
+        Serial.println(temperature);
+    }
 }
