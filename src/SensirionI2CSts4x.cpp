@@ -54,12 +54,8 @@ uint16_t
 SensirionI2CSts4x::measureHighPrecisionTicks(uint16_t& temperatureTicks) {
     uint16_t error;
     uint8_t buffer[3];
-    SensirionI2CTxFrame txFrame(buffer, 3);
-
-    error = txFrame.addCommand(0xFD);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xFD, buffer, 3);
 
     error = SensirionI2CCommunication::sendFrame(STS4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -97,12 +93,8 @@ uint16_t
 SensirionI2CSts4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks) {
     uint16_t error;
     uint8_t buffer[3];
-    SensirionI2CTxFrame txFrame(buffer, 3);
-
-    error = txFrame.addCommand(0xF6);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xF6, buffer, 3);
 
     error = SensirionI2CCommunication::sendFrame(STS4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -140,12 +132,8 @@ uint16_t
 SensirionI2CSts4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks) {
     uint16_t error;
     uint8_t buffer[3];
-    SensirionI2CTxFrame txFrame(buffer, 3);
-
-    error = txFrame.addCommand(0xE0);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xE0, buffer, 3);
 
     error = SensirionI2CCommunication::sendFrame(STS4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -182,12 +170,8 @@ uint16_t SensirionI2CSts4x::measureLowestPrecision(float& temperature) {
 uint16_t SensirionI2CSts4x::serialNumber(uint32_t& serialNumber) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x89);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x89, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(STS4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -210,13 +194,9 @@ uint16_t SensirionI2CSts4x::serialNumber(uint32_t& serialNumber) {
 
 uint16_t SensirionI2CSts4x::softReset() {
     uint16_t error;
-    uint8_t buffer[2];
-    SensirionI2CTxFrame txFrame(buffer, 2);
-
-    error = txFrame.addCommand(0x94);
-    if (error) {
-        return error;
-    }
+    uint8_t buffer[1];
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x94, buffer, 1);
 
     error = SensirionI2CCommunication::sendFrame(STS4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
