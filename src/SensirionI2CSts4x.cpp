@@ -41,13 +41,18 @@
 #include "SensirionCore.h"
 #include <Wire.h>
 
-#define STS4X_I2C_ADDRESS 0x44
+#define STS4X_I2C_ADDRESS _i2c_address
 
 SensirionI2CSts4x::SensirionI2CSts4x() {
 }
 
-void SensirionI2CSts4x::begin(TwoWire& i2cBus) {
+void SensirionI2CSts4x::begin(TwoWire& i2cBus, uint8_t i2c_address) {
     _i2cBus = &i2cBus;
+    _i2c_address = i2c_address;
+}
+
+void SensirionI2CSts4x::begin(TwoWire& i2cBus) {
+    SensirionI2CSts4x::begin(i2cBus, ADDR_STS4X);
 }
 
 uint16_t
