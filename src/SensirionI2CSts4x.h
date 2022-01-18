@@ -43,17 +43,32 @@
 
 #include <SensirionCore.h>
 
+// i2c adresses
+#define ADDR_STS4X 0x44
+#define ADDR_STS4X_ALT 0x45
+#define ADDR_STS4X_ALT2 0x46
+
 class SensirionI2CSts4x {
 
   public:
     SensirionI2CSts4x();
     /**
-     * begin() - Initializes the SensirionI2CSts4x class.
+     * begin() - Initializes the SensirionI2CSts4x class with default I2C
+     *           address (0x44).
      *
      * @param serial Arduino stream object to be communicated with.
      *
      */
     void begin(TwoWire& i2cBus);
+
+    /**
+     * begin() - Initializes the SensirionI2CSts4x class.
+     *
+     * @param serial Arduino stream object to be communicated with.
+     *
+     * @param i2c_address i2c address of the selected STS4x
+     */
+    void begin(TwoWire& i2cBus, uint8_t i2c_address);
 
     /**
      * measureHighPrecisionTicks() - SHT4x command for a single shot measurement
@@ -146,6 +161,7 @@ class SensirionI2CSts4x {
 
   private:
     TwoWire* _i2cBus = nullptr;
+    uint8_t _i2c_address = ADDR_STS4X;
     float _convertTicksToCelsius(uint16_t ticks);
 };
 
