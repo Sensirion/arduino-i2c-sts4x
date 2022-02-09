@@ -44,9 +44,9 @@
 #include <SensirionCore.h>
 
 // i2c adresses
-#define ADDR_STS4X 0x44
-#define ADDR_STS4X_ALT 0x45
-#define ADDR_STS4X_ALT2 0x46
+#define ADDR_STS4X 0x46
+#define ADDR_STS4X_ALT 0x44
+#define ADDR_STS4X_ALT2 0x45
 
 class SensirionI2CSts4x {
 
@@ -54,7 +54,7 @@ class SensirionI2CSts4x {
     SensirionI2CSts4x();
     /**
      * begin() - Initializes the SensirionI2CSts4x class with default I2C
-     *           address (0x44).
+     *           address (0x46).
      *
      * @param serial Arduino stream object to be communicated with.
      *
