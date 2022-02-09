@@ -52,9 +52,9 @@ void setup() {
     /*
      * to initialize sts4 with alternate address
      *
-     * STS40-AD1B: ADDR_STS4X (I2C address: 0x44)
-     * STS40-BD1B: ADDR_STS4X_ALT (I2C address: 0x45)
-     * STS40-CD1B: ADDR_STS4X_ALT2 (I2C address: 0x46)
+     * STS40-CD1B: ADDR_STS4X (I2C address: 0x46)
+     * STS40-AD1B: ADDR_STS4X_ALT (I2C address: 0x44)
+     * STS40-BD1B: ADDR_STS4X_ALT2 (I2C address: 0x45)
      */
     // sts4x.begin(Wire, ADDR_STS4X_ALT);
 
