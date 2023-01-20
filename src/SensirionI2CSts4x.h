@@ -56,7 +56,7 @@ class SensirionI2CSts4x {
      * begin() - Initializes the SensirionI2CSts4x class with default I2C
      *           address (0x46).
      *
-     * @param serial Arduino stream object to be communicated with.
+     * @param i2cBus Arduino stream object to use for communication.
      *
      */
     void begin(TwoWire& i2cBus);
@@ -64,7 +64,7 @@ class SensirionI2CSts4x {
     /**
      * begin() - Initializes the SensirionI2CSts4x class.
      *
-     * @param serial Arduino stream object to be communicated with.
+     * @param i2cBus Arduino stream object to use for communication.
      *
      * @param i2c_address i2c address of the selected STS4x
      */
